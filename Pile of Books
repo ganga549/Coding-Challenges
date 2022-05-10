@@ -1,0 +1,31 @@
+function pileOfBooks(starting_height, stable_height, number_of_partitions) {
+    if (starting_height <= stable_height) return starting_height;
+
+    const splits = (starting_height, number_of_partitions) => {
+        const piles = []; let quotient = 0;
+        (starting_height > number_of_partitions) ? quotient = Math.round(starting_height / number_of_partitions) 
+        : quotient = 1;
+        [...new Array(number_of_partitions)].map(() => {
+            starting_height > quotient ? piles.push(quotient) : piles.push(starting_height);
+            if (starting_height > 0) {
+                starting_height = starting_height - quotient;
+            }
+            });
+        return piles 
+    }
+
+    const array = splits(starting_height, number_of_partitions);
+
+    [...new Array(number_of_partitions)].map(() => {
+        array.forEach((element, index) => {
+           if (element > stable_height)  (
+                delete array[index],
+                array.push(...splits(element, number_of_partitions))
+                ) 
+            }
+        )
+    });
+    
+const final_array = array.filter(()=> true)
+return(final_array);
+}

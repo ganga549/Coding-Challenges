@@ -1,0 +1,20 @@
+const balanced = (s)=> {
+    const array = Array.from(s);
+    console.log(array);
+    const counts = {}
+    let countWild = 0;
+    let difference = 0;
+    array.forEach(element => {
+        element == '*' ? countWild += 1 : 
+        counts[element] = counts[element] ? counts[element] += 1 : 1
+    });
+    
+    let maxValue = Math.max(...Object.values(counts));
+    let minValue = Math.min(...Object.values(counts));
+    
+    Object.values(counts).forEach(element => {
+        difference += maxValue - element;
+    })
+    
+    return ((maxValue == minValue) || (difference == countWild)) 
+}

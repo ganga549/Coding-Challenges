@@ -1,6 +1,6 @@
 const balanced = (s)=> {
     const array = Array.from(s);
-    console.log(array);
+    //console.log(array);
     const counts = {}
     let countWild = 0;
     let difference = 0;
@@ -16,5 +16,5 @@ const balanced = (s)=> {
         difference += maxValue - element;
     })
     
-    return ((maxValue == minValue) || (difference == countWild)) 
+    return ((maxValue == minValue) || (difference == countWild)) || Object.keys(counts).length == 0
 }
